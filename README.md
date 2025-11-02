@@ -51,3 +51,5 @@ ChamadosIA/
 
 ## 📄 Licença
 Projeto acadêmico e institucional. Desenvolvido pela equipe do CATI.
+
+teste de up
