@@ -1,0 +1,15 @@
+@model ChamadosIA.Models.Chamado
+@{
+    ViewData["Title"] = "Editar Chamado";
+}
+
+<div class="dashboard-container">
+    <h2>🔧 Editar Chamado</h2>
+    <form asp-action="Editar" method="post">
+        <input type="hidden" asp-for="ID_Chamado" />
+        <textarea asp-for="Observacoes" class="form-control mb-3" placeholder="Observações adicionais" rows="3"></textarea>
+        <input asp-for="TelefoneContato" class="form-control mb-3" placeholder="Telefone de contato" />
+        <input asp-for="EnderecoAtendimento" class="form-control mb-3" placeholder="Endereço de atendimento" />
+        <button type="submit" class="btn btn-success w-100">Salvar Alterações</button>
+    </form>
+</div>

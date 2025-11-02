@@ -1,0 +1,14 @@
+CREATE DATABASE ChamadosDB;
+GO
+
+USE ChamadosDB;
+GO
+
+CREATE TABLE Usuarios (
+    ID_Usuario INT PRIMARY KEY IDENTITY,
+    Nome NVARCHAR(100) NOT NULL,
+    Email NVARCHAR(100) NOT NULL,
+    SenhaHash NVARCHAR(256) NOT NULL,
+    Setor NVARCHAR(100),
+    Especialidade NVARCHAR(100)
+);

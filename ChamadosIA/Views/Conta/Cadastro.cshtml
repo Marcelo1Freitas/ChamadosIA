@@ -1,0 +1,125 @@
+@{
+    ViewData["Title"] = "Cadastro";
+}
+
+<style>
+    body {
+        background-color: #111;
+        font-family: 'Segoe UI', sans-serif;
+    }
+
+    .cadastro-container {
+        max-width: 450px;
+        margin: 60px auto;
+        background: linear-gradient(to right, #6dd5ed, #2193b0);
+        border-radius: 10px;
+        padding: 30px;
+        color: white;
+        box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    }
+
+    .cadastro-container h2 {
+        text-align: center;
+        margin-bottom: 25px;
+        font-weight: 600;
+    }
+
+    .form-control {
+        border-radius: 8px;
+        border: none;
+        padding: 12px;
+        margin-bottom: 15px;
+    }
+
+    select.form-control {
+        background-color: white;
+        color: black;
+    }
+
+    .btn-cadastro {
+        background-color: #00c6ff;
+        border: none;
+        border-radius: 8px;
+        padding: 12px;
+        width: 100%;
+        color: white;
+        font-weight: bold;
+        transition: background-color 0.3s ease;
+    }
+
+    .btn-cadastro:hover {
+        background-color: #007acc;
+    }
+
+    .tipo-cadastro {
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .alert {
+        background-color: #ff4d4d;
+        border-radius: 8px;
+        padding: 10px;
+        margin-bottom: 15px;
+        text-align: center;
+    }
+</style>
+
+<div class="cadastro-container">
+    <h2>Cadastro</h2>
+
+    @if (ViewBag.Erro != null)
+    {
+        <div class="alert">@ViewBag.Erro</div>
+    }
+
+    <form asp-action="Cadastro" method="post">
+        <div class="tipo-cadastro">
+            <label>
+                <input type="radio" name="tipoCadastro" value="Cliente" checked onchange="toggleFields()" /> Cliente
+            </label>
+            &nbsp;&nbsp;&nbsp;
+            <label>
+                <input type="radio" name="tipoCadastro" value="Tecnico" onchange="toggleFields()" /> Técnico
+            </label>
+        </div>
+
+        <input type="text" name="nome" class="form-control" placeholder="Nome" required />
+        <input type="email" name="email" class="form-control" placeholder="Email" required />
+        <input type="password" name="senha" class="form-control" placeholder="Senha" required />
+
+        <div id="clienteFields">
+            <input type="text" name="endereco" class="form-control" placeholder="Endereço de Atendimento" />
+        </div>
+
+        <div id="tecnicoFields" style="display:none;">
+            <select name="setor" class="form-control">
+                <option value="TecnicoN1">Técnico N1 - HelpDesk</option>
+                <option value="TecnicoN2">Técnico N2 - FieldSupport</option>
+            </select>
+
+            <select name="especialidades" class="form-control" multiple size="5">
+                <option value="Redes">Equipe de REDES</option>
+                <option value="Telefonia">TELEFONIA</option>
+                <option value="LinkInternet">LINK INTERNET</option>
+                <option value="TISeguranca">TI SEGURANÇA</option>
+                <option value="Etc">ETC</option>
+            </select>
+        </div>
+
+        <button type="submit" class="btn-cadastro">Cadastrar</button>
+    </form>
+</div>
+
+<script>
+    function toggleFields() {
+        var tipo = document.querySelector('input[name="tipoCadastro"]:checked').value;
+        if (tipo === 'Cliente') {
+            document.getElementById('clienteFields').style.display = 'block';
+            document.getElementById('tecnicoFields').style.display = 'none';
+        } else {
+            document.getElementById('clienteFields').style.display = 'none';
+            document.getElementById('tecnicoFields').style.display = 'block';
+        }
+    }
+</script>

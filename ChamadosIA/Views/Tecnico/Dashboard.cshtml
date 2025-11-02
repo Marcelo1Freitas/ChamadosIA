@@ -1,0 +1,121 @@
+@{
+    ViewData["Title"] = "Dashboard Técnico";
+}
+
+<link rel="stylesheet" href="~/css/site.css" />
+
+<style>
+    .dashboard-container {
+        max-width: 1000px;
+        margin: 40px auto;
+        background: linear-gradient(to right, #6dd5ed, #2193b0);
+        border-radius: 12px;
+        padding: 30px;
+        color: white;
+        box-shadow: 0 0 15px rgba(0,0,0,0.4);
+    }
+
+    .dashboard-container h2 {
+        text-align: center;
+        font-size: 2rem;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .dashboard-container h4 {
+        text-align: center;
+        font-weight: 400;
+        margin-bottom: 30px;
+        opacity: 0.9;
+    }
+
+    .card-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 20px;
+    }
+
+    .card {
+        background-color: rgba(0,0,0,0.3);
+        border-radius: 10px;
+        padding: 20px;
+        text-align: center;
+        transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+        transform: scale(1.03);
+    }
+
+    .card h5 {
+        font-size: 1.2rem;
+        margin-bottom: 10px;
+    }
+
+    .card p {
+        font-size: 0.95rem;
+        margin-bottom: 15px;
+    }
+
+    .card a {
+        display: inline-block;
+        background-color: #00c6ff;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    .card a:hover {
+        background-color: #007acc;
+    }
+
+    footer {
+        margin-top: 40px;
+        text-align: center;
+        font-size: 0.85rem;
+        color: #eee;
+    }
+</style>
+
+<div class="dashboard-container">
+    <h2>👨‍🔧 Painel do Técnico</h2>
+    <h4>CATI - Central de Atendimento de Tecnologia e Informação</h4>
+
+    <div class="card-grid">
+        <div class="card">
+            <h5>📥 Chamados em Aberto</h5>
+            <p>Visualize os chamados que estão na fila aguardando atendimento.</p>
+            <a href="/Chamado/Fila">Ver Fila</a>
+        </div>
+
+        <div class="card">
+            <h5>🛠️ Chamados em Atendimento</h5>
+            <p>Acompanhe os chamados que você está atendendo ou em deslocamento.</p>
+            <a href="/Chamado/Atendimento">Ver Atendimento</a>
+        </div>
+
+        <div class="card">
+            <h5>✅ Chamados Resolvidos</h5>
+            <p>Consulte chamados finalizados e suas resoluções.</p>
+            <a href="/Chamado/Resolvidos">Ver Resolvidos</a>
+        </div>
+
+        <div class="card">
+            <h5>📊 Estatísticas do Mês</h5>
+            <p>Veja seu desempenho mensal e histórico de atendimento.</p>
+            <a href="/Tecnico/Estatisticas">Ver Estatísticas</a>
+        </div>
+
+        <div class="card">
+            <h5>⚙️ Atualizar Dados da Conta</h5>
+            <p>Redefina senha, email de recuperação, telefone e setor de atuação.</p>
+            <a href="/Conta/Atualizar">Editar Perfil</a>
+        </div>
+    </div>
+
+    <footer>
+        Este site é seguro e foi desenvolvido pela equipe do CATI.
+    </footer>
+</div>

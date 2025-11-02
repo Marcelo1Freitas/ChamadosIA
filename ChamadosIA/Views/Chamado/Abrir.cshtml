@@ -1,0 +1,16 @@
+@model ChamadosIA.Models.Chamado
+@{
+    ViewData["Title"] = "Abrir Chamado";
+}
+
+<div class="dashboard-container">
+    <h2>📝 Abrir Chamado</h2>
+    <form asp-action="Abrir" method="post">
+        <input asp-for="Titulo" class="form-control mb-3" placeholder="Título do chamado" required />
+        <textarea asp-for="Descricao" class="form-control mb-3" placeholder="Descreva o problema" rows="4" required></textarea>
+        <input asp-for="TelefoneContato" class="form-control mb-3" placeholder="Telefone de contato" />
+        <input asp-for="EnderecoAtendimento" class="form-control mb-3" placeholder="Endereço de atendimento" />
+        <input asp-for="Setor" class="form-control mb-3" placeholder="Setor relacionado" />
+        <button type="submit" class="btn btn-primary w-100">Enviar Chamado</button>
+    </form>
+</div>

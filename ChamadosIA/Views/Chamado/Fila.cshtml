@@ -1,0 +1,20 @@
+@model List<ChamadosIA.Models.Chamado>
+@{
+    ViewData["Title"] = "Chamados em Fila";
+}
+
+<div class="dashboard-container">
+    <h2>📥 Chamados em Aberto</h2>
+    @foreach (var chamado in Model)
+    {
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5>@chamado.Titulo</h5>
+                <p>@chamado.Descricao</p>
+                <p>Cliente: @chamado.ClienteEmail</p>
+                <p>Setor: @chamado.Setor</p>
+                <p>Status: <strong>@chamado.Status</strong></p>
+            </div>
+        </div>
+    }
+</div>
