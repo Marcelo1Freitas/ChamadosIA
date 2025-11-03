@@ -1,5 +1,5 @@
 @{
-    ViewData["Title"] = "Dashboard Cliente";
+    ViewData["Title"] = "Dashboard Técnico";
 }
 
 <link rel="stylesheet" href="~/css/site.css" />
@@ -80,32 +80,38 @@
 </style>
 
 <div class="dashboard-container">
-    <h2>🙋‍♂️ Painel do Cliente</h2>
+    <h2>👨‍🔧 Painel do Técnico</h2>
     <h4>CATI - Central de Atendimento de Tecnologia e Informação</h4>
 
     <div class="card-grid">
         <div class="card">
-            <h5>📝 Abrir Chamado</h5>
-            <p>Solicite atendimento técnico para problemas ou dúvidas.</p>
-            <a href="/Chamado/Abrir">Abrir Chamado</a>
+            <h5>📥 Chamados em Aberto</h5>
+            <p>Visualize os chamados que estão na fila aguardando atendimento.</p>
+            <a href="/Chamado/Fila">Ver Fila</a>
         </div>
 
         <div class="card">
-            <h5>📂 Meus Chamados</h5>
-            <p>Consulte chamados em aberto, adicione observações ou cancele.</p>
-            <a href="/Chamado/MeusChamados">Ver Chamados</a>
+            <h5>🛠️ Chamados em Atendimento</h5>
+            <p>Acompanhe os chamados que você está atendendo ou em deslocamento.</p>
+            <a href="/Chamado/Atendimento">Ver Atendimento</a>
         </div>
 
         <div class="card">
-            <h5>🔧 Reiterar ou Editar Chamado</h5>
-            <p>Reforce sua solicitação ou atualize dados de contato.</p>
-            <a href="/Chamado/Editar">Editar Chamado</a>
+            <h5>✅ Chamados Resolvidos</h5>
+            <p>Consulte chamados finalizados e suas resoluções.</p>
+            <a href="/Chamado/Resolvidos">Ver Resolvidos</a>
+        </div>
+
+        <div class="card">
+            <h5>📊 Estatísticas do Mês</h5>
+            <p>Veja seu desempenho mensal e histórico de atendimento.</p>
+            <a href="/Tecnico/Estatisticas">Ver Estatísticas</a>
         </div>
 
         <div class="card">
             <h5>⚙️ Atualizar Dados da Conta</h5>
-            <p>Redefina senha, email de recuperação, telefone e endereço.</p>
-            <a href="/Conta/Atualizar">Editar Perfil</a>
+            <p>Redefina senha, email de recuperação, telefone e setor de atuação.</p>
+            <a href="/Conta/AtualizarConta">Atualizar Conta</a>
         </div>
     </div>
 

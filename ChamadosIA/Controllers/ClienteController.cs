@@ -5,8 +5,8 @@ namespace ChamadosIA.Controllers
     public class ClienteController : Controller
     {
         public IActionResult Dashboard()
-        {
-            return View();
-        }
+{
+    return View("DashboardCliente"); // ← chama Views/Cliente/DashboardCliente.cshtml
+}
     }
 }

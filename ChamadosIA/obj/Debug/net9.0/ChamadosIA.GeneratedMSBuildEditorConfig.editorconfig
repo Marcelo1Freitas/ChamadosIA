@@ -44,20 +44,36 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2hhbWFkb1xSZXNvbHZpZG9zLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Sgt/Documents/GitHub/ChamadosIA/ChamadosIA/Views/Cliente/Dashboard.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50ZVxEYXNoYm9hcmQuY3NodG1s
+[C:/Users/Sgt/Documents/GitHub/ChamadosIA/ChamadosIA/Views/Cliente/AtualizarConta.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50ZVxBdHVhbGl6YXJDb250YS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Sgt/Documents/GitHub/ChamadosIA/ChamadosIA/Views/Cliente/DashboardCliente.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50ZVxEYXNoYm9hcmRDbGllbnRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Sgt/Documents/GitHub/ChamadosIA/ChamadosIA/Views/Conta/AtualizarConta.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29udGFcQXR1YWxpemFyQ29udGEuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Sgt/Documents/GitHub/ChamadosIA/ChamadosIA/Views/Conta/Cadastro.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29udGFcQ2FkYXN0cm8uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Sgt/Documents/GitHub/ChamadosIA/ChamadosIA/Views/Conta/Confirmacao.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29udGFcQ29uZmlybWFjYW8uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Sgt/Documents/GitHub/ChamadosIA/ChamadosIA/Views/Conta/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29udGFcTG9naW4uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Sgt/Documents/GitHub/ChamadosIA/ChamadosIA/Views/Tecnico/Dashboard.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVjbmljb1xEYXNoYm9hcmQuY3NodG1s
+[C:/Users/Sgt/Documents/GitHub/ChamadosIA/ChamadosIA/Views/Tecnico/AtualizarConta.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVjbmljb1xBdHVhbGl6YXJDb250YS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Sgt/Documents/GitHub/ChamadosIA/ChamadosIA/Views/Tecnico/DashboardTecnico.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVjbmljb1xEYXNoYm9hcmRUZWNuaWNvLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Sgt/Documents/GitHub/ChamadosIA/ChamadosIA/Views/Tecnico/Estatisticas.cshtml]

@@ -7,10 +7,10 @@ namespace ChamadosIA.Controllers
 {
     public class TecnicoController : Controller
     {
-        public IActionResult Dashboard()
-        {
-            return View();
-        }
+    public IActionResult Dashboard()
+{
+    return View("DashboardTecnico"); // ← chama Views/Tecnico/DashboardTecnico.cshtml
+}
 
         public IActionResult Estatisticas(string status)
         {

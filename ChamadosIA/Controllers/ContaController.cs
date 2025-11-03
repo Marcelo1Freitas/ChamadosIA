@@ -9,47 +9,87 @@ namespace ChamadosIA.Controllers
 {
     public class ContaController : Controller
     {
-        private readonly AppDbContext _context;
-
-        public ContaController(AppDbContext context)
+        // Simulação de usuário logado em memória
+        private static Usuario usuarioLogado = new Usuario
         {
-            _context = context;
-        }
+            Id = 1,
+            Email = "teste@cati.com",
+            Telefone = "11999999999",
+            Setor = "Suporte",
+            Tipo = "Tecnico",
+            SenhaHash = GerarHash("123456")
+        };
 
         // GET: Login
         public IActionResult Login() => View();
 
         // POST: Login
         [HttpPost]
-        public async Task<IActionResult> Login(string email, string senha)
+        public IActionResult Login(string email, string senha)
         {
             var senhaHash = GerarHash(senha);
-            var usuario = await _context.Usuarios.FirstOrDefaultAsync(u => u.Email == email && u.SenhaHash == senhaHash);
 
-            if (usuario != null)
+            if (email == usuarioLogado.Email && senhaHash == usuarioLogado.SenhaHash)
             {
-                // Autenticação (ex: cookie/session)
-                return RedirectToAction("Index", "Home");
+                TempData["UsuarioId"] = usuarioLogado.Id;
+                return RedirectToAction("Dashboard", usuarioLogado.Tipo == "Tecnico" ? "Tecnico" : "Cliente");
             }
 
             ViewBag.Erro = "Credenciais inválidas";
             return View();
         }
 
-        // GET: Cadastro
-        public IActionResult Cadastro() => View();
+        // GET: AtualizarConta
+        [HttpGet]
+public IActionResult AtualizarConta()
+{
+    if (TempData["UsuarioId"] is not int id || id != usuarioLogado.Id)
+        return RedirectToAction("Login");
 
-        // POST: Cadastro
+    var modelo = new Usuario
+    {
+        Email = usuarioLogado.Email,
+        Telefone = usuarioLogado.Telefone,
+        Setor = usuarioLogado.Setor
+    };
+
+    return View(modelo);
+}
+
+
+        // POST: AtualizarConta
         [HttpPost]
-        public async Task<IActionResult> Cadastro(Usuario usuario)
+public IActionResult AtualizarConta(Usuario dados)
+{
+    if (TempData["UsuarioId"] is not int id || id != usuarioLogado.Id)
+        return RedirectToAction("Login");
+
+    if (!string.IsNullOrEmpty(dados.NovaSenha))
+    {
+        if (dados.NovaSenha != dados.ConfirmarSenha)
         {
-            usuario.SenhaHash = GerarHash(usuario.SenhaHash);
-            _context.Usuarios.Add(usuario);
-            await _context.SaveChangesAsync();
-            return RedirectToAction("Login");
+            TempData["Erro"] = "❌ As senhas não coincidem.";
+            return View(dados);
         }
 
-        private string GerarHash(string senha)
+        usuarioLogado.SenhaHash = GerarHash(dados.NovaSenha);
+    }
+
+    usuarioLogado.Email = dados.Email;
+    usuarioLogado.Telefone = dados.Telefone;
+    usuarioLogado.Setor = dados.Setor;
+
+    TempData["Sucesso"] = "✅ Dados atualizados com sucesso!";
+    return RedirectToAction("Confirmacao");
+}
+
+        public IActionResult Confirmacao()
+        {
+            ViewBag.Mensagem = TempData["Sucesso"] ?? TempData["Erro"];
+            return View();
+        }
+
+        private static string GerarHash(string senha)
         {
             using var sha256 = SHA256.Create();
             var bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(senha));
