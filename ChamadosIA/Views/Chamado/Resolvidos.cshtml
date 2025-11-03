@@ -3,18 +3,124 @@
     ViewData["Title"] = "Chamados Resolvidos";
 }
 
+<link rel="stylesheet" href="~/css/site.css" />
+
+<style>
+    .dashboard-container {
+        max-width: 900px;
+        margin: 60px auto;
+        background: linear-gradient(to right, #6dd5ed, #2193b0);
+        border-radius: 12px;
+        padding: 40px;
+        color: white;
+        box-shadow: 0 0 15px rgba(0,0,0,0.4);
+    }
+
+    .dashboard-container h2 {
+        text-align: center;
+        font-size: 2rem;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .dashboard-container h4 {
+        text-align: center;
+        font-weight: 400;
+        margin-bottom: 30px;
+        opacity: 0.9;
+    }
+
+    .chamado-card {
+        background-color: rgba(0,0,0,0.2);
+        border-radius: 10px;
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+
+    .chamado-card h5 {
+        font-size: 1.2rem;
+        margin-bottom: 10px;
+    }
+
+    .chamado-card p {
+        margin-bottom: 8px;
+        font-size: 0.95rem;
+    }
+
+    .btn-group {
+        display: flex;
+        gap: 10px;
+        margin-top: 15px;
+    }
+
+    .btn-action {
+        flex: 1;
+        padding: 10px;
+        border: none;
+        border-radius: 8px;
+        font-weight: bold;
+        font-size: 0.95rem;
+        cursor: pointer;
+        transition: background 0.3s ease;
+        text-align: center;
+        text-decoration: none;
+    }
+
+    .btn-detalhes {
+        background-color: #ffd633;
+        color: black;
+    }
+
+    .btn-detalhes:hover {
+        background-color: #e6b800;
+    }
+
+    .btn-reabrir {
+        background-color: #ff4d4d;
+        color: white;
+    }
+
+    .btn-reabrir:hover {
+        background-color: #cc0000;
+    }
+
+    footer {
+        margin-top: 30px;
+        text-align: center;
+        font-size: 0.85rem;
+        color: #eee;
+    }
+</style>
+
 <div class="dashboard-container">
     <h2>✅ Chamados Resolvidos</h2>
-    @foreach (var chamado in Model)
+    <h4>Histórico de chamados finalizados com solução registrada</h4>
+
+    @if (Model != null && Model.Any())
     {
-        <div class="card mb-3">
-            <div class="card-body">
-                <h5>@chamado.Titulo</h5>
-                <p>@chamado.Descricao</p>
-                <p>Solucionado por: @chamado.TecnicoResponsavel</p>
-                <p>Solução: @chamado.Solucao</p>
-                <p>Status: <strong>@chamado.Status</strong></p>
+        foreach (var chamado in Model)
+        {
+            <div class="chamado-card">
+                <h5>Chamado #@chamado.ID_Chamado - @chamado.Titulo</h5>
+                <p><strong>Status:</strong> @chamado.Status</p>
+                <p><strong>Cliente:</strong> @chamado.ClienteEmail</p>
+                <p><strong>Setor:</strong> @chamado.Setor</p>
+                <p><strong>Responsável:</strong> @chamado.TecnicoResponsavel</p>
+                <p><strong>Solução:</strong> @chamado.Solucao</p>
+
+                <div class="btn-group">
+                    <a href="/Chamado/Detalhes/@chamado.ID_Chamado" class="btn-action btn-detalhes">🔍 Ver Detalhes</a>
+                    <a href="/Chamado/Reabrir/@chamado.ID_Chamado" class="btn-action btn-reabrir">♻️ Reabrir Chamado</a>
+                </div>
             </div>
-        </div>
+        }
     }
+    else
+    {
+        <p style="text-align:center;">Nenhum chamado resolvido encontrado.</p>
+    }
+
+    <footer>
+        Este site é seguro e foi desenvolvido pela equipe do CATI.
+    </footer>
 </div>

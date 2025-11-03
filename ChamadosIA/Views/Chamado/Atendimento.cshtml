@@ -3,17 +3,125 @@
     ViewData["Title"] = "Chamados em Atendimento";
 }
 
+<link rel="stylesheet" href="~/css/site.css" />
+
+<style>
+    .dashboard-container {
+        max-width: 900px;
+        margin: 60px auto;
+        background: linear-gradient(to right, #6dd5ed, #2193b0);
+        border-radius: 12px;
+        padding: 40px;
+        color: white;
+        box-shadow: 0 0 15px rgba(0,0,0,0.4);
+    }
+
+    .dashboard-container h2 {
+        text-align: center;
+        font-size: 2rem;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .dashboard-container h4 {
+        text-align: center;
+        font-weight: 400;
+        margin-bottom: 30px;
+        opacity: 0.9;
+    }
+
+    .chamado-card {
+        background-color: rgba(0,0,0,0.2);
+        border-radius: 10px;
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+
+    .chamado-card h5 {
+        font-size: 1.2rem;
+        margin-bottom: 10px;
+    }
+
+    .chamado-card p {
+        margin-bottom: 8px;
+        font-size: 0.95rem;
+    }
+
+    .btn-group {
+        display: flex;
+        gap: 10px;
+        margin-top: 15px;
+    }
+
+    .btn-action {
+        flex: 1;
+        padding: 10px;
+        border: none;
+        border-radius: 8px;
+        font-weight: bold;
+        font-size: 0.95rem;
+        cursor: pointer;
+        transition: background 0.3s ease;
+        text-align: center;
+        text-decoration: none;
+    }
+
+    .btn-solucao {
+        background-color: #00c6ff;
+        color: white;
+    }
+
+    .btn-solucao:hover {
+        background-color: #007acc;
+    }
+
+    .btn-finalizar {
+        background-color: #28a745;
+        color: white;
+    }
+
+    .btn-finalizar:hover {
+        background-color: #1e7e34;
+    }
+
+    footer {
+        margin-top: 30px;
+        text-align: center;
+        font-size: 0.85rem;
+        color: #eee;
+    }
+</style>
+
 <div class="dashboard-container">
     <h2>🛠️ Chamados em Atendimento</h2>
-    @foreach (var chamado in Model)
+    <h4>Chamados que estão sendo tratados pelo técnico</h4>
+
+    @if (Model != null && Model.Any())
     {
-        <div class="card mb-3">
-            <div class="card-body">
-                <h5>@chamado.Titulo</h5>
-                <p>@chamado.Descricao</p>
-                <p>Responsável: @chamado.TecnicoResponsavel</p>
-                <p>Status: <strong>@chamado.Status</strong></p>
+        foreach (var chamado in Model)
+        {
+            <div class="chamado-card">
+                <h5>Chamado #@chamado.ID_Chamado - @chamado.Titulo</h5>
+                <p><strong>Descrição:</strong> @chamado.Descricao</p>
+                <p><strong>Cliente:</strong> @chamado.ClienteEmail</p>
+                <p><strong>Setor:</strong> @chamado.Setor</p>
+                <p><strong>Telefone:</strong> @chamado.TelefoneContato</p>
+                <p><strong>Endereço:</strong> @chamado.EnderecoAtendimento</p>
+                <p><strong>Responsável:</strong> @chamado.TecnicoResponsavel</p>
+
+                <div class="btn-group">
+                    <a href="/Chamado/Solucao/@chamado.ID_Chamado" class="btn-action btn-solucao">📝 Adicionar Solução</a>
+                    <a href="/Chamado/Finalizar/@chamado.ID_Chamado" class="btn-action btn-finalizar">✅ Finalizar Chamado</a>
+                </div>
             </div>
-        </div>
+        }
     }
+    else
+    {
+        <p style="text-align:center;">Nenhum chamado em atendimento no momento.</p>
+    }
+
+    <footer>
+        Este site é seguro e foi desenvolvido pela equipe do CATI.
+    </footer>
 </div>
