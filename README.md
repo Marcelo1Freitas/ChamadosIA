@@ -19,9 +19,15 @@ Sistema web para abertura, acompanhamento e gestão de chamados técnicos, desen
 - Atualizar dados da conta e setor de atuação
 
 ## 🎨 Interface
-- Layout moderno e responsivo
-- Dashboards com cards intuitivos e emojis
-- Rodapé institucional adaptativo em todas as telas
+- ✅ Layout moderno e responsivo
+- ✅ Dashboards com cards intuitivos e emojis
+- ✅ Rodapé institucional adaptativo em todas as telas
+- ✅ Tela de abertura de chamado com classificação por serviço, categoria e subcategoria
+- ✅ FAQ interativo com sugestões de solução antes do envio do chamado
+- ✅ Tela de atualização de dados da conta (email, telefone, setor, senha)
+- ✅ Dashboard técnico com abas: Fila, Em Atendimento, Resolvidos
+- ✅ Dashboard cliente com abertura de chamado e retorno inteligente
+
 
 ## 🧰 Tecnologias utilizadas
 - ASP.NET Core MVC (.NET 9)
@@ -51,5 +57,3 @@ ChamadosIA/
 
 ## 📄 Licença
 Projeto acadêmico e institucional. Desenvolvido pela equipe do CATI.
-
-teste de up

@@ -37,6 +37,14 @@ dotnet build
 ```bash
 dotnet run
 ```
+## 🛠️ Solução de erros comuns
+execultar no Terminal: 
+taskkill /F /IM dotnet.exe
+
+depois:
+dotnet clean
+dotnet build
+dotnet run
 
 Acesse no navegador:
 
@@ -48,6 +56,12 @@ http://localhost:5000
 
 - Cliente: `http://localhost:5000/Cliente/Dashboard`
 - Técnico: `http://localhost:5000/Tecnico/Dashboard`
+
+## 🧪 Login de teste
+- Informe que há um login de teste disponível:
+- Email: teste@cati.com
+- Senha: 123456
+
 
 ## 🧰 Dicas úteis
 

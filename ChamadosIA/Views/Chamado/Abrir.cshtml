@@ -7,7 +7,7 @@
 
 <style>
     .form-container {
-        max-width: 600px;
+        max-width: 700px;
         margin: 60px auto;
         background: linear-gradient(to right, #6dd5ed, #2193b0);
         border-radius: 12px;
@@ -49,9 +49,11 @@
         border: none;
         border-radius: 8px;
         font-weight: bold;
-        width: 100%;
         font-size: 1rem;
         transition: background 0.3s ease;
+        text-align: center;
+        text-decoration: none;
+        width: 100%;
     }
 
     .btn-submit:hover {
@@ -67,29 +69,171 @@
 </style>
 
 <div class="form-container">
-    <h2>📝 Abrir Chamado</h2>
-    <h4>Preencha os dados abaixo para solicitar atendimento técnico</h4>
+    <h2>📨 Abrir Chamado</h2>
+    <h4>Classifique o serviço e descreva o problema</h4>
 
     <form asp-action="Abrir" method="post">
         <div class="form-group">
-            <input asp-for="Titulo" class="form-control" placeholder="Título do chamado" required />
+            <label for="Servico">Serviço</label>
+            <select id="Servico" name="Servico" class="form-control" onchange="atualizarCategorias()">
+                <option value="">Selecione...</option>
+                <option value="Hardware">🖥️ Hardware</option>
+                <option value="Software">🧠 Software</option>
+                <option value="Redes">🌐 Redes</option>
+                <option value="Telefonia">☎️ Telefonia</option>
+            </select>
         </div>
+
         <div class="form-group">
-            <textarea asp-for="Descricao" class="form-control" placeholder="Descreva o problema" rows="4" required></textarea>
+            <label for="Categoria">Categoria</label>
+            <select id="Categoria" name="Categoria" class="form-control" onchange="atualizarSubcategorias()">
+                <option value="">Selecione um serviço primeiro</option>
+            </select>
         </div>
+
         <div class="form-group">
-            <input asp-for="TelefoneContato" class="form-control" placeholder="Telefone de contato" />
+            <label for="Subcategoria">Subcategoria</label>
+            <select id="Subcategoria" name="Subcategoria" class="form-control" onchange="atualizarTitulo()">
+                <option value="">Selecione uma categoria primeiro</option>
+            </select>
         </div>
+
         <div class="form-group">
-            <input asp-for="EnderecoAtendimento" class="form-control" placeholder="Endereço de atendimento" />
+            <label for="Titulo">Título do Chamado</label>
+            <input id="Titulo" name="Titulo" class="form-control" readonly />
         </div>
+
         <div class="form-group">
-            <input asp-for="Setor" class="form-control" placeholder="Setor relacionado" />
+            <label for="Descricao">Descrição do problema</label>
+            <textarea id="Descricao" name="Descricao" class="form-control" rows="5" placeholder="Descreva o problema com detalhes..."></textarea>
         </div>
-        <button type="submit" class="btn-submit">Enviar Chamado</button>
+
+        <button type="submit" class="btn-submit">📤 Enviar Chamado</button>
     </form>
 
     <footer>
         Este site é seguro e foi desenvolvido pela equipe do CATI.
     </footer>
+
+    <div id="faqSugestao" style="display:none; margin-top:20px;"> ////////  FAQ DE TESTE /////// COMECA AQUI /////////
+    <h4>🔧 Sugestão para resolver o problema:</h4>
+    <p id="faqTexto" style="margin-bottom:15px;"></p>
+    <p>Essa sugestão resolveu seu problema?</p>
+    <button onclick="faqResolvido(true)" class="btn-submit" style="background-color:#28a745;">✅ Sim, resolvido</button>
+    <button onclick="faqResolvido(false)" class="btn-submit" style="background-color:#dc3545;">❌ Não, continuar com chamado</button>
 </div>
+</div>
+
+<script>
+    const categorias = {
+        "Hardware": ["Desktop", "Notebook", "Impressora"],
+        "Software": ["Sistema", "Aplicativo", "Atualização"],
+        "Redes": ["Wi-Fi", "Cabo", "VPN"],
+        "Telefonia": ["Ramal", "Chamada", "Configuração"]
+    };
+
+    const subcategorias = {
+        "Desktop": ["Configuração", "Sem imagem", "Lento"],
+        "Notebook": ["Bateria", "Tela quebrada", "Teclado"],
+        "Impressora": ["Sem papel", "Erro de impressão", "Conexão falha"],
+        "Sistema": ["Erro de login", "Permissão", "Tela travada"],
+        "Aplicativo": ["Não abre", "Erro ao salvar", "Atualização"],
+        "Atualização": ["Falha", "Versão incompatível"],
+        "Wi-Fi": ["Sem conexão", "Sinal fraco", "Queda constante"],
+        "Cabo": ["Sem sinal", "Porta danificada"],
+        "VPN": ["Instabilidade", "Não conecta"],
+        "Ramal": ["Mudo", "Sem linha", "Chamada externa"],
+        "Chamada": ["Interrupção", "Eco", "Ruído"],
+        "Configuração": ["Desvio de chamadas", "Toque personalizado"]
+    };
+
+    function atualizarCategorias() {
+        const servico = document.getElementById("Servico").value;
+        const categoria = document.getElementById("Categoria");
+        const subcategoria = document.getElementById("Subcategoria");
+        categoria.innerHTML = "";
+        subcategoria.innerHTML = "<option value=''>Selecione uma categoria primeiro</option>";
+        document.getElementById("Titulo").value = "";
+
+        if (categorias[servico]) {
+            categorias[servico].forEach(function (item) {
+                const opt = document.createElement("option");
+                opt.value = item;
+                opt.innerHTML = item;
+                categoria.appendChild(opt);
+            });
+        } else {
+            const opt = document.createElement("option");
+            opt.value = "";
+            opt.innerHTML = "Selecione um serviço primeiro";
+            categoria.appendChild(opt);
+        }
+    }
+
+    function atualizarSubcategorias() {
+        const categoria = document.getElementById("Categoria").value;
+        const subcategoria = document.getElementById("Subcategoria");
+        subcategoria.innerHTML = "";
+        document.getElementById("Titulo").value = "";
+
+        if (subcategorias[categoria]) {
+            subcategorias[categoria].forEach(function (item) {
+                const opt = document.createElement("option");
+                opt.value = item;
+                opt.innerHTML = item;
+                subcategoria.appendChild(opt);
+            });
+        } else {
+            const opt = document.createElement("option");
+            opt.value = "";
+            opt.innerHTML = "Selecione uma categoria primeiro";
+            subcategoria.appendChild(opt);
+        }
+    }
+
+    function atualizarTitulo() {
+        const servico = document.getElementById("Servico").value;
+        const categoria = document.getElementById("Categoria").value;
+        const subcategoria = document.getElementById("Subcategoria").value;
+
+        if (servico && categoria && subcategoria) {
+            document.getElementById("Titulo").value = `${servico} - ${categoria} - ${subcategoria}`;
+        } else {
+            document.getElementById("Titulo").value = "";
+        }
+    }
+
+const faq = { ////////  FAQ DE TESTE /////// COMECA AQUI /////////
+    "Redes|Wi-Fi|Queda constante": "Desligue o modem da tomada, aguarde 15 segundos e ligue novamente.",
+    "Telefonia|Ramal|Mudo": "Verifique se o cabo do telefone está bem conectado e se há sinal no aparelho.",
+    "Hardware|Desktop|Lento": "Reinicie o computador e feche programas em segundo plano.",
+    "Software|Sistema|Erro de login": "Verifique se o CAPS LOCK está ativado e tente redefinir sua senha."
+};
+
+function atualizarTitulo() {
+    const servico = document.getElementById("Servico").value;
+    const categoria = document.getElementById("Categoria").value;
+    const subcategoria = document.getElementById("Subcategoria").value;
+    const titulo = `${servico} - ${categoria} - ${subcategoria}`;
+    document.getElementById("Titulo").value = titulo;
+
+    const chave = `${servico}|${categoria}|${subcategoria}`;
+    if (faq[chave]) {
+        document.getElementById("faqTexto").innerText = faq[chave];
+        document.getElementById("faqSugestao").style.display = "block";
+        document.querySelector("form").style.display = "none";
+    } else {
+        document.getElementById("faqSugestao").style.display = "none";
+        document.querySelector("form").style.display = "block";
+    }
+}
+
+function faqResolvido(resolvido) {
+    if (resolvido) {
+        window.location.href = "/Cliente/Dashboard"; // ou /Tecnico/Dashboard
+    } else {
+        document.getElementById("faqSugestao").style.display = "none";
+        document.querySelector("form").style.display = "block";
+    }
+}
+</script>
